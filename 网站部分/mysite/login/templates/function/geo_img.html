@@ -1,0 +1,82 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/geo.css' %}">
+{% endblock %}
+ 
+ 
+{% block content %}
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            名称
+						</th>
+						<th>
+							时间
+						</th>
+						<th>
+							选项
+						</th>>
+					</tr>
+				</thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+						<td>
+							{{ item.name }}
+						</td>
+						<td>
+							{{ item.time }}
+						</td>
+						<td>
+                            <form class='form-geo' action="/geo_echarts/" method="get">
+								<div class="f">
+									<select class="f" name="hour">
+										<option value=1 selected>1小时</option>
+										<option value=2 >2小时</option>
+										<option value=3 >3小时</option>
+										<option value=4 >4小时</option>
+										<option value=5 >5小时</option>
+										<option value=6 >6小时</option>
+									</select>
+								</div>
+								<div class="f">
+									<select class="f" name="type">
+										<option value=0>分布图</option>
+										<option value=1>热力图</option>
+									</select>
+								</div>
+								<div class="f">
+									<input type="hidden" name="time" value={{ item.urltime }}>
+								</div>
+								<button type="submit" class="btn btn-primary pull-right">提交</button>
+							</form>
+						</td>
+					</tr>
+                {% endfor %}
+				</tbody>
+			</table>
+            <div id="pages" class="text-center" >
+        <nav>
+            <ul class="pagination">
+                <li class="step-links">
+                {% if items.has_previous %}
+                    <a class='active' href="?page={{ items.previous_page_number }}">上一页</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ items.number }} of {{ items.paginator.num_pages }}</span>
+
+                {% if items.has_next %}
+                    <a class='active' href="?page={{ items.next_page_number }}">下一页</a>
+                {% endif %}
+                </li></ul></nav></div>
+		</div>
+	</div>
+</div>
+{% endblock %}

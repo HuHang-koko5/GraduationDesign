@@ -1,0 +1,94 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}SI-Result{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/geo.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-8 column">
+			<dl>
+				<dt>
+					详细描述
+				</dt>
+				<dd>
+					下面是{{ data.name }}的评估情况
+				</dd>
+				<dt>
+					发生时间
+				</dt>
+				<dd>
+					{{ data.time }}
+				</dd>
+				<dt>
+					微博获取情况
+				</dt>
+				<dd>
+					在地震发生后，总共爬取了{{ data.count }}条微博
+				</dd>
+				<dd>
+					第一小时内，获取{{ data.totalNum0 }}条微博，其中个人用户微博{{ data.personalNum0 }}条
+				</dd>
+				<dd>
+					第两小时内，获取{{ data.totalNum1 }}条微博，其中个人用户微博{{ data.personalNum1 }}条
+				</dd>
+				<dd>
+					第三小时内，获取{{ data.totalNum2 }}条微博，其中个人用户微博{{ data.personalNum2 }}条
+				</dd>
+				<dd>
+					第四小时内，获取{{ data.totalNum3 }}条微博，其中个人用户微博{{ data.personalNum3 }}条
+				</dd>
+				<dd>
+					第五小时内，获取{{ data.totalNum4 }}条微博，其中个人用户微博{{ data.personalNum4 }}条
+				</dd>
+				<dd>
+					第六小时内，获取{{ data.totalNum5 }}条微博，其中个人用户微博{{ data.personalNum5 }}条
+				</dd>
+				<dt>
+					博文微博内容的烈度评估比例（I~V）
+				</dt>
+				<dd>
+					I类内容比例为{{ data.SIV }}%
+				</dd>
+				<dd>
+					II类内容比例为{{ data.SIIV }}%
+				</dd>
+				<dd>
+					III类内容比例为{{ data.SIIII }}%
+				</dd>
+				<dd>
+					IV类内容比例为{{ data.SIII }}%
+				</dd>
+				<dd>
+					V类内容比例为{{ data.SII }}%
+				</dd>
+				<dt>
+					地震烈度评估等级：
+				</dt>
+				<dd>
+					<h2>{{ data.label }}</h2>
+				</dd>
+			</dl>
+		</div>
+		<div class="col-md-4 column">
+			<div class="jumbotron well">
+				<h3>
+					{{ data.name }}
+				</h3>
+				<p>
+					左边是该次地震的分析结果汇总情况
+				</p>
+				<p>
+					 <a class="btn btn-lg btn-block btn-info" href="/reference/">说明</a>
+				</p>
+				<p>
+					<a class="btn btn-lg btn-success btn-block" href="/si_list/">返回</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="jumbotron">
+				<h1>
+					地震评估系统
+				</h1>
+				<p>
+					基于社交网络舆情的地震烈度评估系统
+				</p>
+				<p>
+					 <a class="btn btn-primary btn-large" href="/reference/">说明文档</a>
+					<a class="btn btn-primary btn-large" href="/admin/">用户管理</a>
+				</p>
+                {% if request.session.is_login %}
+                    <h3>你好,{{ request.session.user_name }}！欢迎回来！</h3>
+                {% else %}
+                    <h3>你尚未登录，只能访问公开内容！</h3>
+                    <a href="/login" class="">点击登录</a>
+                {% endif %}
+                {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+    {% if request.session.is_login %}
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+            <h4>浏览微博数据</h4>
+            <a class="btn btn-primary btn-large" href="/tweets/">进入</a>
+		</div>
+		<div class="col-md-3 column">
+            <h4>时间分布</h4>
+            <a class="btn btn-primary btn-large" href="/timebar/">进入</a>
+		</div>
+		<div class="col-md-3 column">
+            <h4>时空热力图</h4>
+            <a class="btn btn-primary btn-large" href="/geo/">进入</a>
+		</div>
+        <div class="col-md-3 column">
+            <h4>整体报告</h4>
+            <a class="btn btn-primary btn-large" href="/si_list/">进入</a>
+		</div>
+	</div>
+    {% endif %}
+</div>
+{% endblock %}

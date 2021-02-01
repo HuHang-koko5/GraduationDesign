@@ -1,0 +1,71 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}地震微博内容{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/geo.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            {% for item in items %}
+			<div class="row clearfix">
+				<div class="col-md-2 column">
+					<img alt="load error" width="96" height="96" src="/static/image/h{{ item.pic }}.jpeg" class="img-circle" />
+                    <h4>
+                        {{ item.user_name}}
+                    </h4>
+                </div>
+				<div class="col-md-6 column">
+					<p  class="text-center lead">
+						 {{ item.content }}
+					</p>
+                    <p class="text-left">
+						 时间：{{ item.t_time }}
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<ul class="list-inline">
+						<div>
+							<a class="btn btn-primary btn-large" href={{ item.user_blog }}>用户微博首页</a>
+						</div>
+                        <div>
+                            <h3>地理位置</h3>
+                            <li class="lead">
+							    东经： {{ item.lon }}度
+						    </li>
+						    <li class="lead">
+							    北纬： {{ item.lat }}度
+						    </li>
+                        </div>
+
+					</ul>
+				</div>
+			</div>
+            <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=2)" width="80%" color=#987cb9 SIZE=10>
+            {% endfor %}
+		</div>
+        <div id="pages" class="text-center" >
+            <nav>
+                <ul class="pagination">
+                    <li class="step-links">
+                    {% if items.has_previous %}
+                        <a class='active' href="?dbname={{ info.dbname }}&page={{ items.previous_page_number }}">上一页</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ items.number }} of {{ items.paginator.num_pages }}</span>
+
+                    {% if items.has_next %}
+                        <a class='active' href="?dbname={{ info.dbname }}&page={{ items.next_page_number }}">下一页</a>
+                    {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+	</div>
+
+</div>
+{% endblock %}

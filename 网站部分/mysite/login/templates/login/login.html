@@ -1,0 +1,40 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+ 
+ 
+{% block content %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+          <form class='form-login' action="/login/" method="post">
+              <h3 class="text-center">欢迎登陆</h3>
+              <div class="form-group">
+                  <span class="glyphicon glyphicon-cloud"></span>
+                  {{ login_form.username.label_tag }}
+                  {{ login_form.username}}
+              </div>
+              <div class="form-group">
+                  {{ login_form.password.label_tag }}
+                  {{ login_form.password}}
+              </div>
+              <div class="form-group">
+
+                    {{ login_form.captcha.label_tag }}<br>
+                    {{ login_form.captcha.errors }}
+                  <p class="from_control">
+                    {{ login_form.captcha }}
+                  </p>
+              </div>
+              {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+              {% csrf_token %}
+              <button type="reset" class="btn btn-default pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right">提交</button>
+          </form>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}

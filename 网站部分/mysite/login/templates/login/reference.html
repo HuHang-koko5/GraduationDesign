@@ -1,0 +1,131 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-8 column">
+			<dl>
+				<dt>
+					地震烈度 seismic intensity
+				</dt>
+				<dd>
+					地震引起的地面震动及其影响的强弱程度。
+				</dd>
+				<dt>
+					数据来源
+				</dt>
+				<dd>
+					来自于新浪微博的社交网络推文，使用机器学习方法加以分析
+			</dl>
+		</div>
+		<div class="col-md-4 column">
+            <h2>地震烈度分析</h2>
+			<p>
+				 表示地震对<strong>地表及工程建筑物影响的强弱程度</strong>地表及工程建筑物影响的强弱程度。（或释为地震影响和破坏的程度）。
+                是在没有仪器记录的情况下，凭地震时人们的感觉或地震发生后器物反应的程度，工程建筑物的损坏或破坏程度、地表的变化状况而定的一种宏观尺度。 因此烈度的鉴定主要依靠对上述几个方面的宏观考察和定性描述。
+			</p>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-8 column">
+            <h3>博文内容烈度分级</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							级别
+						</th>
+                        <th>
+                            SI值
+                        </th>
+						<th>
+							描述
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							SI-V
+						</td>
+						<td>
+                            微博内容震害计算值大于8
+						</td>
+                        <td>
+                            无法站立，摔倒，有抛起感。在移动中的交通工具中也有明显感觉，出现恐慌情绪。目睹楼房开裂，倒塌现象。
+						</td>
+					</tr>
+					<tr class="success">
+						<td>
+							SI-VI
+						</td>
+						<td>
+							微博内容震害计算值大于6
+						</td>
+                        <td>
+                            有强烈震感，出现站立不稳，惊逃户外情况。重物出现摇晃，翻倒，移位情况。部分房屋，墙体出现裂缝。
+						</td>
+					</tr>
+					<tr>
+						<td>
+							SI-III
+						</td>
+						<td>
+							微博内容震害计算值大于4
+						</td>
+                        <td>
+                            绝大多数人有明显震感。部分人出现梦中惊醒，出现害怕，担忧情绪。器物出现大幅晃动，翻倒现象。
+						</td>
+					</tr>
+					<tr class="success">
+						<td>
+							SI-II
+						</td>
+						<td>
+							微博内容震害计算值大于2
+						</td>
+                        <td>
+                           大部分人表明有震感，少数出现惊讶，感慨情绪。 门窗可能出现轻微作响，悬挂物出现摇晃，作响。
+						</td>
+					</tr>
+					<tr>
+						<td>
+							SI-I
+						</td>
+						<td>
+							微博内容震害计算值小于2
+						</td>
+                        <td>
+                            室内静止的人员少数有感觉，位于高楼的人普遍有轻微震感，人们反应正常。器物反应难以观察。
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-4 column">
+            <h2>基于社交网络舆情内容的烈度分析</h2>
+			<p>
+                对爬虫获取到的震后微博内容加以清洗，分类。
+                基于自建烈度词典和语法分析方法通过机器学习方法对微博内容进行评估获取内容烈度分级
+                之后依据历史地震中不同烈度微博占据比例和发震时间，地点和微博热度等参数通过逻辑斯蒂回归算法获取最佳拟合参数后计算得出本次微博的烈度评估值
+            </p>
+		</div>
+	</div>
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+            <h2>参考国家标准</h2>
+            <h4>中国地震烈度表</h4>
+			<img alt="1020*440" src="/static/image/dzldb1.jpg" />
+            <img alt="1020*500" src="/static/image/dzldb2.jpg" />
+            <img alt="1020*529" src="/static/image/dzldb3.jpg" />
+            <img alt="1020*530" src="/static/image/dzldb4.jpg" />
+        </div>
+    </div>
+</div>
+{% endblock %}

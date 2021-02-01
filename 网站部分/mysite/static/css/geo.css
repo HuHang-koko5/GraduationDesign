@@ -1,0 +1,21 @@
+.form-geo {
+  max-width: 330px;
+  padding: 10px;
+  margin: 0 auto;
+}
+.form-geo .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  font-size: 20px;
+}
+.form-geo .form-control:focus {
+  z-index: 2;
+}
+.f
+{
+float:left;
+}
